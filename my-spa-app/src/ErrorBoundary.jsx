@@ -1,6 +1,6 @@
-import { Component } from 'react';
+import React from 'react';
 
-class ErrorBoundary extends Component {
+class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
     this.state = { hasError: false };
@@ -10,9 +10,13 @@ class ErrorBoundary extends Component {
     return { hasError: true };
   }
 
+  componentDidCatch(error, info) {
+    console.error('ErrorBoundary caught an error', error, info);
+  }
+
   render() {
     if (this.state.hasError) {
-      return <h2>Щось пішло не так...</h2>;
+      return <h2>Щось пішло не так 🛠️</h2>;
     }
 
     return this.props.children;
